@@ -1,0 +1,48 @@
+{
+  "service": "scanner-worker",
+  "environment": "production",
+  "cloud": "aws",
+  "security": {
+    "workload_identity": true,
+    "managed_secrets": true,
+    "least_privilege_iam": true,
+    "public_database": false,
+    "public_admin_ingress": false,
+    "privileged_container": false,
+    "read_only_root_fs": true,
+    "sast": true,
+    "sca": true,
+    "container_scan": true,
+    "iac_scan": true,
+    "secret_scan": true,
+    "signed_artifacts": true
+  },
+  "reliability": {
+    "health_checks": true,
+    "min_replicas": 2,
+    "zone_aware": true,
+    "rollback_automated": true,
+    "slo_defined": true,
+    "incident_owner": "platform-oncall",
+    "runbook": true,
+    "backup_restore_test": true,
+    "queue_concurrency": 20,
+    "queue_concurrency_max": 50
+  },
+  "velocity": {
+    "build_minutes": 7,
+    "build_budget_minutes": 10,
+    "automated_deployment": true,
+    "reusable_service_template": true,
+    "preview_environments": true,
+    "self_service_observability": true
+  },
+  "cost": {
+    "monthly_budget_usd": 2500,
+    "estimated_monthly_usd": 1800,
+    "autoscaling_max": 20,
+    "log_retention_days": 30,
+    "idle_environment_ttl_hours": 24,
+    "owner": "platform"
+  }
+}
