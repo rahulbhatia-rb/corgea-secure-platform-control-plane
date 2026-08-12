@@ -1,0 +1,48 @@
+{
+  "service": "scanner-worker-unsafe",
+  "environment": "production",
+  "cloud": "aws",
+  "security": {
+    "workload_identity": false,
+    "managed_secrets": false,
+    "least_privilege_iam": false,
+    "public_database": true,
+    "public_admin_ingress": true,
+    "privileged_container": true,
+    "read_only_root_fs": false,
+    "sast": false,
+    "sca": false,
+    "container_scan": false,
+    "iac_scan": false,
+    "secret_scan": false,
+    "signed_artifacts": false
+  },
+  "reliability": {
+    "health_checks": false,
+    "min_replicas": 1,
+    "zone_aware": false,
+    "rollback_automated": false,
+    "slo_defined": false,
+    "incident_owner": "",
+    "runbook": false,
+    "backup_restore_test": false,
+    "queue_concurrency": 100,
+    "queue_concurrency_max": 20
+  },
+  "velocity": {
+    "build_minutes": 25,
+    "build_budget_minutes": 10,
+    "automated_deployment": false,
+    "reusable_service_template": false,
+    "preview_environments": false,
+    "self_service_observability": false
+  },
+  "cost": {
+    "monthly_budget_usd": 2000,
+    "estimated_monthly_usd": 5000,
+    "autoscaling_max": 0,
+    "log_retention_days": 0,
+    "idle_environment_ttl_hours": 0,
+    "owner": ""
+  }
+}
