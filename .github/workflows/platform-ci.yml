@@ -1,0 +1,23 @@
+name: secure-platform-ci
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v5
+        with:
+          go-version: '1.23'
+      - run: go test ./...
+      - run: go vet ./...
+      - run: go run ./cmd/platformgate -contract examples/secure-service.json
+      - name: Unsafe service must fail
+        run: |
+          if go run ./cmd/platformgate -contract examples/unsafe-service.json; then
+            echo "unsafe production contract unexpectedly passed"
+            exit 1
+          fi
